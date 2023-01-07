@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>transform DEMO</title>
+	<meta charset="utf-8">
+	<title>transform DEMO</title>
 	<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
         <script>var vConsole = new window.VConsole()</script>
 </head>
@@ -13,9 +13,9 @@
 	<script>
 		var test = document.getElementById('test');
 		test.style.cssText = 'display: block;width: 100%;height: 0px;background: linear-gradient(transparent, transparent), url("https://mmbiz.qpic.cn/mmbiz_gif/CibKQQBny3qpA1Ib6vwoT9JgPNIDekBPia9UdbHhXKiaDtH7Uo8giaJtew6HjfPUXXOagl8LOtnOMWFaAuknHF8O5Q/640?wx_fmt=gif") center center / cover !important;padding-top: 108.657%;opacity: 0.999;';
-		console.warn(text.style.cssText);
-		text.style.cssText = test.style.cssText;
-		console.warn(text.style.cssText);
+		console.warn(test.style.cssText);
+		test.style.cssText = test.style.cssText;
+		console.warn(test.style.cssText);
 	</script>
 </body>
 
