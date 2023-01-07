@@ -4,36 +4,19 @@
 <head>
     <meta charset="utf-8">
     <title>transform DEMO</title>
-    <style>
-    	.fit-key-board {
-			background-color: lightgreen;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 1000px;
-			background: #fff;
-			transform: translate3d(0, 150%, 0);
-			transition: transform 0.5s;
-			background-color: grey;
-			will-change: transform;
-		}
-		.fit-key-board-show {
-			transform: translate3d(0, 0%, 0);
-			transition: transform 0.5s;
-			will-change: transform;
-		}
-
-</style>
-    <script type="text/javascript">
-	    setTimeout(() => {
-	        document.getElementById('keyboard').setAttribute('class', 'fit-key-board fit-key-board-show')
-	    }, 200);
-    </script>
+	<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+        <script>var vConsole = new window.VConsole()</script>
 </head>
 
 <body>
-    <div id="keyboard" class="fit-key-board"></div>
+	<a id="test"></a>
+	<script>
+		var test = document.getElementById('test');
+		test.style.cssText = 'display: block;width: 100%;height: 0px;background: linear-gradient(transparent, transparent), url("https://mmbiz.qpic.cn/mmbiz_gif/CibKQQBny3qpA1Ib6vwoT9JgPNIDekBPia9UdbHhXKiaDtH7Uo8giaJtew6HjfPUXXOagl8LOtnOMWFaAuknHF8O5Q/640?wx_fmt=gif") center center / cover !important;padding-top: 108.657%;opacity: 0.999;';
+		console.warn(text.style.cssText);
+		text.style.cssText = test.style.cssText;
+		console.warn(text.style.cssText);
+	</script>
 </body>
 
 </html>
