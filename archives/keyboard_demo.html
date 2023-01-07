@@ -10,9 +10,12 @@
 </head>
 
 <body>
-	<a id="test" style="display: block;width: 100%;height: 0px;background: linear-gradient(transparent, transparent), url("https://mmbiz.qpic.cn/mmbiz_gif/CibKQQBny3qpA1Ib6vwoT9JgPNIDekBPia9UdbHhXKiaDtH7Uo8giaJtew6HjfPUXXOagl8LOtnOMWFaAuknHF8O5Q/640?wx_fmt=gif") center center / cover !important;padding-top: 108.657%;opacity: 0.999;"></a>
+<!-- 	<a id="test" style="display: block;width: 100%;height: 0px;background: linear-gradient(transparent, transparent), url(https://mmbiz.qpic.cn/mmbiz_gif/CibKQQBny3qpA1Ib6vwoT9JgPNIDekBPia9UdbHhXKiaDtH7Uo8giaJtew6HjfPUXXOagl8LOtnOMWFaAuknHF8O5Q/640?wx_fmt=gif) center center / cover !important;padding-top: 108.657%;opacity: 0.999;"></a> -->
 	<script>
-		var test = document.getElementById('test');
+		var test = document.createElement('a');
+		test.style = "display: block;width: 100%;height: 0px;background: linear-gradient(transparent, transparent), url(https://mmbiz.qpic.cn/mmbiz_gif/CibKQQBny3qpA1Ib6vwoT9JgPNIDekBPia9UdbHhXKiaDtH7Uo8giaJtew6HjfPUXXOagl8LOtnOMWFaAuknHF8O5Q/640?wx_fmt=gif) center center / cover !important;padding-top: 108.657%;opacity: 0.999;";
+// 		var test = document.getElementById('test');
+		document.body.appendChild(test);
 		console.warn(test.style.cssText);
 		window.a = function () {
 			test.style.cssText = test.style.cssText;
