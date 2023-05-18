@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="test">打开小程序</button>
+  <script>
+    document.getElementById('test').onclick = () => {
+      WeixinJSBridge.invoke('openEmbeddedWeApp', {
+        appId: "wxa918198f16869201"
+        appVersion: 0
+        relativeURL: "package_a/welfare_coupon/welfare_coupon.html?_oc_cps_sign=CC_230518_9067199_125962339_7f9882786f9efaceee63b3522ba797c0&_oc_mkt_domain=222&_oc_mkt_tr_sc=ddjb_goods_coupon&_oc_mkt_tr_token=uy3a65irhigi4ebm4ojyfpkmtvkgk3qyxtzhdsoh2e7luone3idcjbscvfedkk6yeshloqacpi6qy&_oc_pid=9067199_125962339&_x_ddjb_act=%7B%22st%22%3A%221%22%7D&cpsSign=CC_230518_9067199_125962339_7f9882786f9efaceee63b3522ba797c0&customParameters=Eg9wdFMwMHViXy1QY3NOdWkgASgB&duoduo_type=2&goods_id=381436253097&goods_sign=E972-qURrT1PKcURwfjcaU7HW5GEbiTw7A_JQDFEQVc7h&pid=9067199_125962339&zs_duo_id=15037453&source_type=ams&ams_sku_id=100_381436253097&material_type=0"
+        userName: "gh_a6611aee87d6@app"
+        scene: 1091
+      }, (res) => {
+        alert(res.err_msg);
+      });
+    };
+  </script>
+</body>
+</html>
