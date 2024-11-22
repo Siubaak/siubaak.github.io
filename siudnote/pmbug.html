@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selection breaks while composition in iPad Safari + ShadowDOM</title>
+</head>
+<body>
+  <div id="app" style="margin: 12px; padding: 12px; border: 1px solid blue"></div>
+  <script type="module">
+    import { DOMParser, Schema } from 'https://cdn.jsdelivr.net/npm/prosemirror-model@1.23.0/+esm';
+    import { EditorState } from 'https://cdn.jsdelivr.net/npm/prosemirror-state@1.4.3/+esm';
+    import { EditorView } from 'https://cdn.jsdelivr.net/npm/prosemirror-view@1.36.0/+esm';
+
+    const app = document.getElementById('app');
+    const root = app.attachShadow({ mode: 'open' });
+    const div = document.createElement('div');
+    root.appendChild(div);
+
+    const schema = new Schema({
+      nodes: {
+        doc: { content: 'block+' },
+        text: { group: 'inline' },
+        leaf: {
+          content: 'text*',
+          toDOM: node => ['span', 0],
+        },
+        section: {
+          group: 'block',
+          content: 'leaf+',
+          toDOM: node => ['section', 0],
+        },
+      },
+    });
+
+    const empty = document.createElement('div');
+    const doc = DOMParser.fromSchema(schema).parse(empty);
+    const state = EditorState.create({ doc });
+    const view = new EditorView(div, { state });
+  </script>
+</body>
+</html>
