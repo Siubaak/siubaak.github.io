@@ -19,15 +19,10 @@
 
     const schema = new Schema({
       nodes: {
-        doc: { content: 'block+' },
+        doc: { content: 'section+' },
         text: { group: 'inline' },
-        leaf: {
-          content: 'text*',
-          toDOM: node => ['span', 0],
-        },
         section: {
-          group: 'block',
-          content: 'leaf+',
+          content: 'text*',
           toDOM: node => ['section', 0],
         },
       },
