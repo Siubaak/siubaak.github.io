@@ -36,7 +36,7 @@
     const state = EditorState.create({ doc });
     const printSels = () => {
       const res = selections.map(sel => `<p>anchor: ${sel[0]}, focus: ${sel[1]}</p>`);
-      document.getElementById('applog').innerHTML = res;
+      document.getElementById('applog').innerHTML = res.join('');
     };
     const view = new EditorView(div, {
       state,
@@ -75,7 +75,7 @@
     const state = EditorState.create({ doc });
     const printSels = () => {
       const res = selections.map(sel => `<p>anchor: ${sel[0]}, focus: ${sel[1]}</p>`);
-      document.getElementById('app2log').innerHTML = res;
+      document.getElementById('app2log').innerHTML = res.join('');
     };
     const view = new EditorView(app, {
       state,
