@@ -6,7 +6,9 @@
   <title>Selection breaks while composition in iPad Safari + ShadowDOM</title>
 </head>
 <body>
+  <div>In ShadowDOM</div>
   <div id="app" style="margin: 12px; padding: 12px; border: 1px solid blue"></div>
+  <div id="applog"></div>
   <script type="module">
     import { DOMParser, Schema } from 'https://cdn.jsdelivr.net/npm/prosemirror-model@1.23.0/+esm';
     import { EditorState } from 'https://cdn.jsdelivr.net/npm/prosemirror-state@1.4.3/+esm';
@@ -28,10 +30,58 @@
       },
     });
 
+    const selections = [];
     const empty = document.createElement('div');
     const doc = DOMParser.fromSchema(schema).parse(empty);
     const state = EditorState.create({ doc });
-    const view = new EditorView(div, { state });
+    const printSels = () => {
+      const res = selections.map(sel => [sel.anchorOffset, sel.focusOffset]);
+      document.getElementById('applog').innerHTML = JSON.stringify(res, null, 2);
+    };
+    const view = new EditorView(div, {
+      state,
+      appendTransactions() {
+        selections.push(view.domSelectionRange());
+        printSels();
+      },
+    });
+  </script>
+  <div style="margin-top: 48px">Not in ShadowDOM</div>
+  <div id="app2" style="margin: 12px; padding: 12px; border: 1px solid red"></div>
+  <div id="app2log"></div>
+  <script type="module">
+    import { DOMParser, Schema } from 'https://cdn.jsdelivr.net/npm/prosemirror-model@1.23.0/+esm';
+    import { EditorState } from 'https://cdn.jsdelivr.net/npm/prosemirror-state@1.4.3/+esm';
+    import { EditorView } from 'https://cdn.jsdelivr.net/npm/prosemirror-view@1.36.0/+esm';
+
+    const app = document.getElementById('app2');
+
+    const schema = new Schema({
+      nodes: {
+        doc: { content: 'section+' },
+        text: { group: 'inline' },
+        section: {
+          content: 'text*',
+          toDOM: node => ['section', 0],
+        },
+      },
+    });
+
+    const selections = [];
+    const empty = document.createElement('div');
+    const doc = DOMParser.fromSchema(schema).parse(empty);
+    const state = EditorState.create({ doc });
+    const printSels = () => {
+      const res = selections.map(sel => [sel.anchorOffset, sel.focusOffset]);
+      document.getElementById('applog').innerHTML = JSON.stringify(res, null, 2);
+    };
+    const view = new EditorView(app, {
+      state,
+      appendTransactions() {
+        selections.push(view.domSelectionRange());
+        printSels();
+      },
+    });
   </script>
 </body>
 </html>
