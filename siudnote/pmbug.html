@@ -35,13 +35,14 @@
     const doc = DOMParser.fromSchema(schema).parse(empty);
     const state = EditorState.create({ doc });
     const printSels = () => {
-      const res = selections.map(sel => [sel.anchorOffset, sel.focusOffset]);
-      document.getElementById('applog').innerHTML = JSON.stringify(res, null, 2);
+      const res = selections.map(sel => `<p>anchor: ${sel[0]}, focus: ${sel[1]}</p>`);
+      document.getElementById('applog').innerHTML = res;
     };
     const view = new EditorView(div, {
       state,
       dispatchTransaction(tr) {
-        selections.push(view.domSelectionRange());
+        const range = view.domSelectionRange();
+        selections.push([range.anchorOffset, range.focusOffset]);
         printSels();
         this.updateState(this.state.apply(tr));
       },
@@ -73,13 +74,14 @@
     const doc = DOMParser.fromSchema(schema).parse(empty);
     const state = EditorState.create({ doc });
     const printSels = () => {
-      const res = selections.map(sel => [sel.anchorOffset, sel.focusOffset]);
-      document.getElementById('applog').innerHTML = JSON.stringify(res, null, 2);
+      const res = selections.map(sel => `<p>anchor: ${sel[0]}, focus: ${sel[1]}</p>`);
+      document.getElementById('app2log').innerHTML = res;
     };
     const view = new EditorView(app, {
       state,
       dispatchTransaction(tr) {
-        selections.push(view.domSelectionRange());
+        const range = view.domSelectionRange();
+        selections.push([range.anchorOffset, range.focusOffset]);
         printSels();
         this.updateState(this.state.apply(tr));
       },
