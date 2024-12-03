@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Harmony Test</title>
+</head>
+
+<body>
+  <wx-open-launch-weapp
+    id="launch-weapp"
+    username="gh_6ee8536f381b"
+  >
+    <template>
+      <button style="color:cornflowerblue; padding: 12px 6px">拉起好物商店小程序</button>
+    </template>
+  </wx-open-launch-weapp>
+  <script>
+    (function() {
+      const btn = document.getElementById('launch-weapp');
+      btn.addEventListener('launch', function (e) {
+        alert('success');
+      });
+      btn.addEventListener('error', function (e) {
+        alert('fail', e.detail);
+      });
+    })()
+  </script>
+
+  <wx-open-launch-app
+    id="launch-app"
+    appid="wx95a3a4d7c627e07d"
+  >
+    <template>
+      <button style="color:cornflowerblue; padding: 12px 6px">跳转王者荣耀App</button>
+    </template>
+  </wx-open-launch-app>
+  <script>
+    (function() {
+      const btn = document.getElementById('launch-app');
+      btn.addEventListener('launch', function (e) {
+        alert('success');
+      });
+      btn.addEventListener('error', function (e) {
+        alert('fail', e.detail);
+      });
+    })()
+  </script>
+</body>
+
+</html>
